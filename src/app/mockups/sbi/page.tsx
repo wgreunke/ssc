@@ -8,6 +8,22 @@ export default function SBIPage() {
       <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
         <form className="space-y-4">
           <div>
+            <label htmlFor="person" className="block text-sm font-medium text-gray-700 mb-2">
+              Select a person to give feedback to:
+            </label>
+            <select
+              id="person"
+              name="person"
+              className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            >
+              <option value="">Select a person...</option>
+              <option value="john">John Henderson</option>
+              <option value="sara">Sara Miller</option>
+              <option value="susan">Susan Chen</option>
+            </select>
+          </div>
+
+          <div>
             <label htmlFor="situation" className="block text-sm font-medium text-gray-700 mb-2">
               Situation
             </label>
@@ -83,6 +99,7 @@ export default function SBIPage() {
             Submit
           </button>
         </form>
+        <p>You are logged in as Jeff</p>
       </div>
     </div>
   );
