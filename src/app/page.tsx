@@ -1,4 +1,4 @@
-import Image from "next/image";
+//import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 async function getEmployees() {
