@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabase";
 async function getEmployees() {
   const { data, error } = await supabase
     .from('employees')
-    .select('first_name, last_name')
+    .select('first_name, last_name, emp_department,emp_title')
     .limit(10);
 
   if (error) {
@@ -27,7 +27,7 @@ export default async function Home() {
             <ul className="space-y-2">
               {employees.map((employee, index) => (
                 <li key={index} className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-                  {employee.first_name} {employee.last_name}
+                  {employee.first_name} {employee.last_name}: {employee.emp_department} - {employee.emp_title}
                 </li>
               ))}
             </ul>
