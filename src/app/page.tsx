@@ -37,13 +37,13 @@ export default async function Home() {
                 <thead>
                   <tr className="bg-gray-100 dark:bg-gray-700">
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
-                      Name <br /> (click to provide feedback)
+                      Name <br />
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
                       Title
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Feedback Given
+                      
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Feedback Received
@@ -54,18 +54,21 @@ export default async function Home() {
                   {employees.map((employee, index) => (
                     <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <Link href={`/mockups/sbi?id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                           {employee.first_name} {employee.last_name}
-                        </Link>
+                        
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {employee.emp_title}
                       </td>
                       <td className="px-6 py-4">
-                        
+                      <Link href={`/mockups/sbi?id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                        Give Feedback
+                        </Link>  
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        0
+                      <td className="px-6 py-4">
+                      <Link href={`/feedback?id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                        Review Feedback
+                        </Link>
                       </td>
                     </tr>
                   ))}

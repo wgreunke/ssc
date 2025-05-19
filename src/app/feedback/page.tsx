@@ -1,6 +1,7 @@
 //This is the history page for a user. It shows all of the feedback that has been given to them and all of the feedback you have given.
 
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
 //"feedback_table" ("id", "created_at", "feedback_to_id", "feedback_from_id", "feedback_situation", "feedback_behavior", "feedback_impact", "feedback_suggestion", "importance")
 
@@ -40,6 +41,11 @@ export default async function FeedbackPage() {
 
     return (
         <div className="max-w-4xl mx-auto p-8">
+            <div className="mb-8">
+                <Link href="/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                    ← Back to Home
+                </Link>
+            </div>
             <h1 className="text-2xl font-bold mb-8">Welcome Susan</h1>
             
             <div className="space-y-8">
