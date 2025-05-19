@@ -48,22 +48,22 @@ export default async function FeedbackPage() {
                     <div className="space-y-4">
                         {feedbackGiven.length > 0 ? (
                             feedbackGiven.map((feedback) => (
-                                <div key={feedback.id} className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                                <div key={feedback.id} className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg shadow">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
                                             <p>  {new Date(feedback.created_at).toLocaleDateString()}
                                             
                                             </p>
-                                            <h3 className="font-medium">Situation</h3>
+                                            <h3 className="font-bold text-lg">Situation</h3>
                                             <p className="text-gray-600 dark:text-black-300">{feedback.feedback_situation}</p>
                                         <br />
-                                            <h3 className="font-medium">Behavior</h3>
+                                            <h3 className="font-bold text-lg">Behavior</h3>
                                             <p className="text-gray-600 dark:text-black-300">{feedback.feedback_behavior}</p>
                                         <br />
-                                            <h3 className="font-medium">Impact</h3>
+                                            <h3 className="font-bold text-lg">Impact</h3>
                                             <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_impact}</p>
                                         <br />
-                                            <h3 className="font-medium">Suggestion</h3>
+                                            <h3 className="font-bold text-lg">Suggestion</h3>
                                             <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_suggestion}</p>
                                         </div>
                                     </div>
@@ -84,27 +84,24 @@ export default async function FeedbackPage() {
                     <div className="space-y-4">
                         {feedbackReceived.length > 0 ? (
                             feedbackReceived.map((feedback) => (
-                                <div key={feedback.id} className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <h3 className="font-medium">Situation</h3>
+                                <div key={feedback.id} className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg shadow">
+                                    <div>
+                                        <p> {new Date(feedback.created_at).toLocaleDateString()}</p>
+                                            <h3 className="font-bold text-lg">Situation</h3>
                                             <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_situation}</p>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-medium">Behavior</h3>
+                                            <br />
+                                            <h3 className="font-bold text-lg">Behavior</h3>
                                             <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_behavior}</p>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-medium">Impact</h3>
+                                            <br />
+                                            <h3 className="font-bold text-lg">Impact</h3>
                                             <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_impact}</p>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-medium">Suggestion</h3>
+                                            <br />
+                                            <h3 className="font-bold text-lg">Suggestion</h3>
                                             <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_suggestion}</p>
-                                        </div>
+                                      
                                     </div>
                                     <div className="mt-2 text-sm text-gray-500">
-                                        Received on: {new Date(feedback.created_at).toLocaleDateString()}
+                                        
                                         {feedback.importance && (
                                             <span className="ml-2">
                                                 • Importance: {feedback.importance}
