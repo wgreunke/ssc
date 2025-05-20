@@ -7,19 +7,19 @@ import Link from "next/link";
 
 const current_user_id = 2;
 
-async function getUserName(user_id: string) {
+async function getOtherUserName(other_user: string) {
     const { data: user, error } = await supabase
-        .from('users')
-        .select('name')
-        .eq('id', user_id)
+        .from('employees')
+        .select('first_name, last_name')
+        .eq('id', other_user)
         .single();
 
     if (error) {
-        console.error('Error fetching user name:', error);
+        console.error('Error fetching user name:', error?.message || error || 'No user found');
         return 'Unknown User';
     }
 
-    return user?.name || 'Unknown User';
+    return user?.first_name + ' ' + user?.last_name || 'Unknown User';
 }
 
 async function getFeedbackGiven(from_id: string, to_id: string) {
@@ -59,14 +59,14 @@ export default async function FeedbackPage({
 }: {
     searchParams: { [key: string]: string | string[] | undefined }
 }) {
-    const from_id = searchParams.from_id as string;
-    if (!from_id) {
+    const other_user = searchParams.other_user as string;
+    if (!other_user) {
         return <div>No user ID provided</div>;
     }
 
-    const userName = await getUserName(from_id);
-    const feedbackGiven = await getFeedbackGiven(current_user_id.toString(), from_id);
-    const feedbackReceived = await getFeedbackReceived(from_id, current_user_id.toString());
+    const other_user_name = await getOtherUserName(other_user);
+    const feedbackGiven = await getFeedbackGiven(current_user_id.toString(), other_user);
+    const feedbackReceived = await getFeedbackReceived(other_user, current_user_id.toString());
 
     return (
         <div className="max-w-4xl mx-auto p-8">
@@ -76,7 +76,8 @@ export default async function FeedbackPage({
                 </Link>
             </div>
             <h1 className="text-2xl font-bold mb-8">Welcome Susan</h1>
-            <p>You are viewing interactions with {userName}</p>
+            <p>You are viewing interactions with {other_user_name}</p>
+            <br></br>
             <div className="space-y-8">
                 <section>
                     <h2 className="text-xl font-semibold mb-4">Feedback Given</h2>

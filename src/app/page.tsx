@@ -66,7 +66,7 @@ export default async function Home() {
                         </Link>  
                       </td>
                       <td className="px-6 py-4">
-                      <Link href={`/showfeedback?from_id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                      <Link href={`/showfeedback?other_user=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                         Review Feedback
                         </Link>
                       </td>
