@@ -5,6 +5,8 @@ import Link from "next/link";
 
 //"feedback_table" ("id", "created_at", "feedback_to_id", "feedback_from_id", "feedback_situation", "feedback_behavior", "feedback_impact", "feedback_suggestion", "importance")
 
+const user_id = 2;
+
 async function getFeedbackGiven() {
     const { data: feedback, error } = await supabase
         .from('feedback_table')
@@ -24,7 +26,7 @@ async function getFeedbackReceived() {
     const { data: feedback, error } = await supabase
         .from('feedback_table')
         .select('*')
-        .eq('feedback_to_id', '2')
+        .eq('feedback_to_id', user_id)
         .order('created_at', { ascending: false });
 
     if (error) {
