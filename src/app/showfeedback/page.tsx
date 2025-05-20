@@ -1,7 +1,6 @@
-//This is the history page for a user. It shows all of the feedback that has been given to them and all of the feedback you have given.
-
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import { PageProps } from 'next/app'; // This import is likely incorrect for App Router
 
 //"feedback_table" ("id", "created_at", "feedback_to_id", "feedback_from_id", "feedback_situation", "feedback_behavior", "feedback_impact", "feedback_suggestion", "importance")
 
@@ -54,11 +53,12 @@ async function getFeedbackReceived(from_id: string, to_id: string) {
     return feedback || [];
 }
 
-  
-
-export default async function FeedbackPage({ searchParams }: { 
+// Corrected type definition for Page component props
+interface FeedbackPageProps {
     searchParams?: { [key: string]: string | string[] | undefined };
-   }) {
+}
+
+export default async function FeedbackPage({ searchParams }: FeedbackPageProps) {
     const other_user = searchParams?.other_user as string;
     if (!other_user) {
         return <div>No user ID provided</div>;
@@ -87,8 +87,8 @@ export default async function FeedbackPage({ searchParams }: {
                                 <div key={feedback.id} className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg shadow">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <p>  {new Date(feedback.created_at).toLocaleDateString()}
-                                            
+                                            <p> 
+                                            {new Date(feedback.created_at).toLocaleDateString()}
                                             </p>
                                             <h3 className="font-bold text-lg">Situation</h3>
                                             <p className="text-gray-600 dark:text-black-300">{feedback.feedback_situation}</p>
@@ -105,7 +105,6 @@ export default async function FeedbackPage({ searchParams }: {
                                     </div>
                                     <div className="mt-2 text-sm text-gray-500">
                                         <p> Importance: {feedback.importance} </p>
-                                    
                                     </div>
                                 </div>
                             ))
@@ -134,10 +133,8 @@ export default async function FeedbackPage({ searchParams }: {
                                             <br />
                                             <h3 className="font-bold text-lg">Suggestion</h3>
                                             <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_suggestion}</p>
-                                      
                                     </div>
                                     <div className="mt-2 text-sm text-gray-500">
-                                        
                                         {feedback.importance && (
                                             <span className="ml-2">
                                                 • Importance: {feedback.importance}
