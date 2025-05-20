@@ -23,7 +23,7 @@ async function getEmployees() {
 
 export default async function Home() {
   const employees = await getEmployees();
-  const user_id=  '2';  //This is defualt for Susan, need to change when have auth.
+  //const user_id=  '2';  //This is defualt for Susan, need to change when have auth.
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-4 sm:p-8 md:p-20 gap-8 sm:gap-16 font-[family-name:var(--font-geist-sans)]">
