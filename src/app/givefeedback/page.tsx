@@ -1,14 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { handleSubmit } from '@/app/actions';
-
-
-
-
 
 interface Employee {
     first_name: string;
@@ -23,7 +19,7 @@ interface FormData {
     importance: string;
 }
 
-export default function SBIPage() {
+function FeedbackForm() {
     const searchParams = useSearchParams();
     const to_id = searchParams.get('to_id');
     const [employee, setEmployee] = useState<Employee | null>(null);
@@ -39,7 +35,7 @@ export default function SBIPage() {
         async function getEmployee() {
             if (to_id) {
                 const { data, error } = await supabase
-                  .from('employees')
+                    .from('employees')
                     .select('first_name, last_name')
                     .eq('id', to_id)
                     .single();
@@ -174,6 +170,14 @@ export default function SBIPage() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function SBIPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <FeedbackForm />
+        </Suspense>
     );
 }
     
