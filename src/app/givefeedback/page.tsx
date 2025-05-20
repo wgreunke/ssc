@@ -11,26 +11,11 @@ interface Employee {
     last_name: string;
 }
 
-interface FormData {
-    situation: string;
-    behavior: string;
-    impact: string;
-    suggestion: string;
-    importance: string;
-}
-
 function FeedbackForm() {
     const searchParams = useSearchParams();
     const to_id = searchParams.get('to_id');
     const from_id = searchParams.get('from_id');
     const [employee, setEmployee] = useState<Employee | null>(null);
-    const [formData, setFormData] = useState<FormData>({
-        situation: '',
-        behavior: '',
-        impact: '',
-        suggestion: '',
-        importance: ''
-    });
 
     useEffect(() => {
         async function getEmployee() {
@@ -50,14 +35,6 @@ function FeedbackForm() {
         }
         getEmployee();
     }, [to_id]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
