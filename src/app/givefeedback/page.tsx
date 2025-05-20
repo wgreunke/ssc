@@ -22,6 +22,7 @@ interface FormData {
 function FeedbackForm() {
     const searchParams = useSearchParams();
     const to_id = searchParams.get('to_id');
+    const from_id = searchParams.get('from_id');
     const [employee, setEmployee] = useState<Employee | null>(null);
     const [formData, setFormData] = useState<FormData>({
         situation: '',
@@ -71,6 +72,7 @@ function FeedbackForm() {
 
                 <form className="space-y-4" action={handleSubmit}>
                     <input type="hidden" name="to_id" value={to_id || ''} />
+                    <input type="hidden" name="from_id" value={from_id || ''} />
                     <div>
                         <label htmlFor="situation" className="block text-sm font-medium text-gray-700 mb-2">
                             Situation

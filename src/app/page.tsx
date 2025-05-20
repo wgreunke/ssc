@@ -23,7 +23,7 @@ async function getEmployees() {
 
 export default async function Home() {
   const employees = await getEmployees();
-  
+  const user_id=  '2';  //This is defualt for Susan, need to change when have auth.
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -61,7 +61,7 @@ export default async function Home() {
                         {employee.emp_title}
                       </td>
                       <td className="px-6 py-4">
-                      <Link href={`/givefeedback?to_id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                      <Link href={`/givefeedback?from_id=${user_id}&to_id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                         Give Feedback
                         </Link>  
                       </td>
