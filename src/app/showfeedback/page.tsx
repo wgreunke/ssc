@@ -53,13 +53,13 @@ async function getFeedbackReceived(from_id: string, to_id: string) {
 
     return feedback || [];
 }
-
 interface PageProps {
-    searchParams: { [key: string]: string | string[] | undefined }
-}
+    searchParams?: { [key: string]: string | string[] | undefined };
+  }
+  
 
 export default async function FeedbackPage({ searchParams }: PageProps) {
-    const other_user = searchParams.other_user as string;
+    const other_user = searchParams?.other_user as string;
     if (!other_user) {
         return <div>No user ID provided</div>;
     }
