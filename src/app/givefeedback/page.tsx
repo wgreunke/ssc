@@ -6,6 +6,10 @@ import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { handleSubmit } from '@/app/actions';
 
+
+
+
+
 interface Employee {
     first_name: string;
     last_name: string;
@@ -21,7 +25,7 @@ interface FormData {
 
 export default function SBIPage() {
     const searchParams = useSearchParams();
-    const employeeId = searchParams.get('id');
+    const to_id = searchParams.get('to_id');
     const [employee, setEmployee] = useState<Employee | null>(null);
     const [formData, setFormData] = useState<FormData>({
         situation: '',
@@ -33,11 +37,11 @@ export default function SBIPage() {
 
     useEffect(() => {
         async function getEmployee() {
-            if (employeeId) {
+            if (to_id) {
                 const { data, error } = await supabase
-                    .from('employees')
+                  .from('employees')
                     .select('first_name, last_name')
-                    .eq('id', employeeId)
+                    .eq('id', to_id)
                     .single();
 
                 if (error) {
@@ -48,7 +52,7 @@ export default function SBIPage() {
             }
         }
         getEmployee();
-    }, [employeeId]);
+    }, [to_id]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -70,7 +74,7 @@ export default function SBIPage() {
                 </h1>
 
                 <form className="space-y-4" action={handleSubmit}>
-                    <input type="hidden" name="employeeId" value={employeeId || ''} />
+                    <input type="hidden" name="to_id" value={to_id || ''} />
                     <div>
                         <label htmlFor="situation" className="block text-sm font-medium text-gray-700 mb-2">
                             Situation

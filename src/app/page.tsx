@@ -61,12 +61,12 @@ export default async function Home() {
                         {employee.emp_title}
                       </td>
                       <td className="px-6 py-4">
-                      <Link href={`/mockups/sbi?id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                      <Link href={`/givefeedback?to_id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                         Give Feedback
                         </Link>  
                       </td>
                       <td className="px-6 py-4">
-                      <Link href={`/feedback?id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                      <Link href={`/showfeedback?from_id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                         Review Feedback
                         </Link>
                       </td>
