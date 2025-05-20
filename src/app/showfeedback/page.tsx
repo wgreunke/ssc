@@ -55,7 +55,6 @@ async function getFeedbackReceived(from_id: string, to_id: string) {
 }
 
 interface PageProps {
-    params: { [key: string]: string }
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
