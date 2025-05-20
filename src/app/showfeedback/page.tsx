@@ -111,42 +111,46 @@ function FeedbackContent() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-8">
-            <div className="mb-8">
+        <div className="max-w-4xl mx-auto p-2 sm:p-8">
+            <div className="mb-4 sm:mb-8">
                 <Link href="/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                     ← Back to Home
                 </Link>
             </div>
-            <h1 className="text-2xl font-bold mb-8">Welcome Susan</h1>
-            <p>You are viewing interactions with {otherUserName}</p>
-            <br></br>
-            <div className="space-y-8">
+            <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-8">Welcome Susan</h1>
+            <p className="mb-4">You are viewing interactions with {otherUserName}</p>
+            <div className="space-y-4 sm:space-y-8">
                 <section>
-                    <h2 className="text-xl font-semibold mb-4">Feedback Given</h2>
-                    <div className="space-y-4">
+                    <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Feedback Given</h2>
+                    <div className="space-y-3 sm:space-y-4">
                         {feedbackGiven.length > 0 ? (
                             feedbackGiven.map((feedback) => (
-                                <div key={feedback.id} className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg shadow">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <p> 
+                                <div key={feedback.id} className="bg-green-50 dark:bg-green-900/20 p-3 sm:p-4 rounded-lg shadow">
+                                    <div>
+                                        <p className="text-sm sm:text-base mb-2"> 
                                             {new Date(feedback.created_at).toLocaleDateString()}
-                                            </p>
-                                            <h3 className="font-bold text-lg">Situation</h3>
-                                            <p className="text-gray-600 dark:text-black-300">{feedback.feedback_situation}</p>
-                                        <br />
-                                            <h3 className="font-bold text-lg">Behavior</h3>
-                                            <p className="text-gray-600 dark:text-black-300">{feedback.feedback_behavior}</p>
-                                        <br />
-                                            <h3 className="font-bold text-lg">Impact</h3>
-                                            <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_impact}</p>
-                                        <br />
-                                            <h3 className="font-bold text-lg">Suggestion</h3>
-                                            <p className="text-gray-600 dark:text-gray-300">{feedback.feedback_suggestion}</p>
+                                        </p>
+                                        <div className="space-y-4">
+                                            <div>
+                                                <h3 className="font-bold text-base sm:text-lg mb-1">Situation</h3>
+                                                <p className="text-sm sm:text-base text-gray-600 dark:text-black-300">{feedback.feedback_situation}</p>
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-base sm:text-lg mb-1">Behavior</h3>
+                                                <p className="text-sm sm:text-base text-gray-600 dark:text-black-300">{feedback.feedback_behavior}</p>
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-base sm:text-lg mb-1">Impact</h3>
+                                                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">{feedback.feedback_impact}</p>
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-base sm:text-lg mb-1">Suggestion</h3>
+                                                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">{feedback.feedback_suggestion}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="mt-2 text-sm text-gray-500">
-                                        <p> Importance: {feedback.importance} </p>
+                                    <div className="mt-4 text-xs sm:text-sm text-gray-500">
+                                        <p>Importance: {feedback.importance}</p>
                                     </div>
                                 </div>
                             ))

@@ -26,48 +26,46 @@ export default async function Home() {
   const user_id=  '2';  //This is defualt for Susan, need to change when have auth.
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <h1 className="text-2xl font-bold">Hello Susan,</h1>
-        <h2 className="text-2xl font-bold">Your team members:</h2>
-        <div className="w-full max-w-4xl">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-4 sm:p-8 md:p-20 gap-8 sm:gap-16 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-[24px] sm:gap-[32px] row-start-2 items-center w-full max-w-[100%] sm:max-w-4xl">
+        <h1 className="text-xl sm:text-2xl font-bold">Hello Susan,</h1>
+        <h2 className="text-xl sm:text-2xl font-bold">Your team members:</h2>
+        <div className="w-full">
           {employees.length > 0 ? (
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto -mx-4 sm:mx-0">
               <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow">
                 <thead>
                   <tr className="bg-gray-100 dark:bg-gray-700">
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
-                      Name <br />
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
+                      Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
                       Title
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Feedback Received
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody>
                   {employees.map((employee, index) => (
                     <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                          {employee.first_name} {employee.last_name}
-                        
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
+                        {employee.first_name} {employee.last_name}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                         {employee.emp_title}
                       </td>
-                      <td className="px-6 py-4">
-                      <Link href={`/givefeedback?from_id=${user_id}&to_id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-                        Give Feedback
+                      <td className="px-3 sm:px-6 py-4">
+                        <Link href={`/givefeedback?to_id=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                          Give Feedback
                         </Link>  
                       </td>
-                      <td className="px-6 py-4">
-                      <Link href={`/showfeedback?other_user=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-                        Review Feedback
+                      <td className="px-3 sm:px-6 py-4">
+                        <Link href={`/showfeedback?other_user=${employee.id}`} className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                          Review Feedback
                         </Link>
                       </td>
                     </tr>
