@@ -81,8 +81,6 @@ function FeedbackForm() {
                             type="text"
                             id="situation"
                             name="situation"
-                            value={formData.situation}
-                            onChange={handleChange}
                             className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                             placeholder="Enter the situation..."
                             required
@@ -97,8 +95,6 @@ function FeedbackForm() {
                             type="text"
                             id="behavior"
                             name="behavior"
-                            value={formData.behavior}
-                            onChange={handleChange}
                             className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                             placeholder="What was the person's behavior?"
                             required
@@ -113,8 +109,6 @@ function FeedbackForm() {
                             type="text"
                             id="impact"
                             name="impact"
-                            value={formData.impact}
-                            onChange={handleChange}
                             className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                             placeholder="What was the impact of the behavior?"
                             required
@@ -129,8 +123,6 @@ function FeedbackForm() {
                             type="text"
                             id="suggestion"
                             name="suggestion"
-                            value={formData.suggestion}
-                            onChange={handleChange}
                             className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                             placeholder="What suggestion do you want to share?"
                             required
@@ -153,8 +145,6 @@ function FeedbackForm() {
                                         id={`importance-${value}`}
                                         name="importance"
                                         value={value}
-                                        checked={formData.importance === value.toString()}
-                                        onChange={handleChange}
                                         className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                                         required
                                     />
