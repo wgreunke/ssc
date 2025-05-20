@@ -5,7 +5,7 @@
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 //"feedback_table" ("id", "created_at", "feedback_to_id", "feedback_from_id", "feedback_situation", "feedback_behavior", "feedback_impact", "feedback_suggestion", "importance")
 
@@ -70,9 +70,7 @@ async function getFeedbackReceived(from_id: string, to_id: string): Promise<Feed
     return feedback || [];
 }
 
-
-
-export default function FeedbackPage() {
+function FeedbackContent() {
     const searchParams = useSearchParams();
     const other_user = searchParams.get('other_user') as string;
     const [otherUserName, setOtherUserName] = useState('Loading...');
@@ -194,5 +192,13 @@ export default function FeedbackPage() {
                 </section>
             </div>
         </div>
+    );
+}
+
+export default function FeedbackPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <FeedbackContent />
+        </Suspense>
     );
 }
