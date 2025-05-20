@@ -58,7 +58,9 @@ interface PageProps {
   }
   
 
-export default async function FeedbackPage({ searchParams }: PageProps) {
+export default async function FeedbackPage({ searchParams }: { 
+    searchParams?: { [key: string]: string | string[] | undefined };
+   }) {
     const other_user = searchParams?.other_user as string;
     if (!other_user) {
         return <div>No user ID provided</div>;
