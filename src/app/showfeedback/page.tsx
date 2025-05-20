@@ -5,13 +5,29 @@ import Link from "next/link";
 
 //"feedback_table" ("id", "created_at", "feedback_to_id", "feedback_from_id", "feedback_situation", "feedback_behavior", "feedback_impact", "feedback_suggestion", "importance")
 
-const user_id = 2;
+const current_user_id = 2;
 
-async function getFeedbackGiven() {
+async function getUserName(user_id: string) {
+    const { data: user, error } = await supabase
+        .from('users')
+        .select('name')
+        .eq('id', user_id)
+        .single();
+
+    if (error) {
+        console.error('Error fetching user name:', error);
+        return 'Unknown User';
+    }
+
+    return user?.name || 'Unknown User';
+}
+
+async function getFeedbackGiven(from_id: string, to_id: string) {
     const { data: feedback, error } = await supabase
         .from('feedback_table')
         .select('*')
-        .eq('feedback_from_id', '2')
+        .eq('feedback_from_id', from_id)
+        .eq('feedback_to_id', to_id)
         .order('created_at', { ascending: false });
 
     if (error) {
@@ -22,11 +38,12 @@ async function getFeedbackGiven() {
     return feedback || [];
 }
 
-async function getFeedbackReceived() {
+async function getFeedbackReceived(from_id: string, to_id: string) {
     const { data: feedback, error } = await supabase
         .from('feedback_table')
         .select('*')
-        .eq('feedback_to_id', user_id)
+        .eq('feedback_to_id', to_id)
+        .eq('feedback_from_id', from_id)
         .order('created_at', { ascending: false });
 
     if (error) {
@@ -37,9 +54,19 @@ async function getFeedbackReceived() {
     return feedback || [];
 }
 
-export default async function FeedbackPage() {
-    const feedbackGiven = await getFeedbackGiven();
-    const feedbackReceived = await getFeedbackReceived();
+export default async function FeedbackPage({
+    searchParams,
+}: {
+    searchParams: { [key: string]: string | string[] | undefined }
+}) {
+    const from_id = searchParams.from_id as string;
+    if (!from_id) {
+        return <div>No user ID provided</div>;
+    }
+
+    const userName = await getUserName(from_id);
+    const feedbackGiven = await getFeedbackGiven(current_user_id.toString(), from_id);
+    const feedbackReceived = await getFeedbackReceived(from_id, current_user_id.toString());
 
     return (
         <div className="max-w-4xl mx-auto p-8">
@@ -49,7 +76,7 @@ export default async function FeedbackPage() {
                 </Link>
             </div>
             <h1 className="text-2xl font-bold mb-8">Welcome Susan</h1>
-            
+            <p>You are viewing interactions with {userName}</p>
             <div className="space-y-8">
                 <section>
                     <h2 className="text-xl font-semibold mb-4">Feedback Given</h2>
