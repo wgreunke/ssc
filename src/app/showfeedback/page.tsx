@@ -70,10 +70,7 @@ async function getFeedbackReceived(from_id: string, to_id: string): Promise<Feed
     return feedback || [];
 }
 
-// Corrected type definition for Page component props
-interface FeedbackPageProps {
-    searchParams?: { [key: string]: string | string[] | undefined };
-}
+
 
 export default function FeedbackPage() {
     const searchParams = useSearchParams();
